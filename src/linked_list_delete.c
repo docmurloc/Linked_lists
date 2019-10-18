@@ -30,7 +30,7 @@ void delete_node_rank(head_node_t *obj, int rank)
     obj->_nb_node -= 1;
 }
 
-void clear_chaine(head_node_t *obj)
+void clear_link(head_node_t *obj)
 {
     if (obj == NULL)
         return;
@@ -38,10 +38,10 @@ void clear_chaine(head_node_t *obj)
         delete_node_rank(obj, 0);
 }
 
-void delete_chaine(head_node_t *obj)
+void delete_link(head_node_t *obj)
 {
     if (obj == NULL)
         return;
-    clear_chaine(obj);
+    clear_link(obj);
     free(obj);
 }

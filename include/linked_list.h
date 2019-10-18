@@ -5,8 +5,8 @@
 ** chaine_list
 */
 
-#ifndef CHAINE_LIST_H_
-#define CHAINE_LIST_H_
+#ifndef LINKED_LIST_H_
+#define LINKED_LIST_H_
 
 #include <string.h>
 #include <stdlib.h>
@@ -58,7 +58,7 @@ typedef struct head_node_s
     node_t *_head;
 } head_node_t;
 
-void init_chaine_list(head_node_t *obj);
+void init_linked_list(head_node_t *obj);
 
 void add_element_back(head_node_t *obj, node_t *element);
 void add_element_front(head_node_t *obj, node_t *element);
@@ -74,8 +74,8 @@ linked_list_type_t *get_data(head_node_t *obj, int rank);
 
 void delete_node(node_t *obj);
 void delete_node_rank(head_node_t *obj, int rank);
-void clear_chaine(head_node_t *obj);
-void delete_chaine(head_node_t *obj);
+void clear_link(head_node_t *obj);
+void delete_link(head_node_t *obj);
 
 void change_value(node_t *obj, void *ptr_value, type_t type);
 void change_value_rank(head_node_t *obj, void *ptr, type_t type, int rank);

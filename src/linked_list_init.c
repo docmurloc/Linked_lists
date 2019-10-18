@@ -17,7 +17,7 @@ void init_node(node_t *obj)
     obj->_type = type_unknown;
 }
 
-void init_chaine_list(head_node_t *obj)
+void init_linked_list(head_node_t *obj)
 {
     if (obj == NULL)
         return;

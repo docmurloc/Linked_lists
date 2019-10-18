@@ -8,7 +8,7 @@
 #include <criterion/criterion.h>
 #include "linked_list.h"
 
-Test(chaine_list_init, node_init)
+Test(linked_list_init, node_init)
 {
     node_t node;
     init_node(&node);
@@ -16,15 +16,15 @@ Test(chaine_list_init, node_init)
     cr_assert(node._next == &node, "The result was %p. Expected %p", node._next, &node);
     cr_assert(node._before == &node, "The result was %p. Expected %p", node._before, &node);
 }
-Test(chaine_list_init, chaine_list_init)
+Test(linked_list_init, linked_list_init)
 {
     head_node_t head;
-    init_chaine_list(&head);
+    init_linked_list(&head);
     cr_assert(head._head == NULL, "The result was %p. Expected %p", head._head, NULL);
     cr_assert(head._nb_node == 0, "The result was %d. Expected %d", head._nb_node, 0);
 }
 
-Test(chaine_list_connect, node_connect)
+Test(linked_list_connect, node_connect)
 {
     node_t *a = malloc(sizeof(node_t));
     node_t *b = malloc(sizeof(node_t));
@@ -39,7 +39,7 @@ Test(chaine_list_connect, node_connect)
     free(b);
 }
 
-Test(chaine_list_init, node_isole)
+Test(linked_list_init, node_isole)
 {
     node_t a;
     node_t b;
@@ -65,7 +65,7 @@ Test(chaine_list_init, node_isole)
     cr_assert(c._before == &a, "The result was %p. Expected %p", c._before, &a);
 }
 
-Test(chaine_list_create, node_create_data)
+Test(linked_list_create, node_create_data)
 {
     int _int = 4;
     char _char = 10;
@@ -88,12 +88,12 @@ Test(chaine_list_create, node_create_data)
     free(node_pointer);
 }
 
-Test(chaine_list_add, node_first)
+Test(linked_list_add, node_first)
 {
     head_node_t head;
     node_t node;
 
-    init_chaine_list(&head);
+    init_linked_list(&head);
     init_node(&node);
 
     first_node(&head, &node);
@@ -101,14 +101,14 @@ Test(chaine_list_add, node_first)
     cr_assert(head._head == &node, "The result was %p. Expected %p", head._head, &node);
 }
 
-Test(chaine_list_add, add_element_back_)
+Test(linked_list_add, add_element_back_)
 {
     head_node_t head;
     node_t a;
     node_t b;
     node_t c;
 
-    init_chaine_list(&head);
+    init_linked_list(&head);
     init_node(&a);
     init_node(&b);
     init_node(&c);
@@ -136,14 +136,14 @@ Test(chaine_list_add, add_element_back_)
 
 }
 
-Test(chaine_list_add, add_element_front_)
+Test(linked_list_add, add_element_front_)
 {
     head_node_t head;
     node_t a;
     node_t b;
     node_t c;
 
-    init_chaine_list(&head);
+    init_linked_list(&head);
     init_node(&a);
     init_node(&b);
     init_node(&c);
@@ -171,14 +171,14 @@ Test(chaine_list_add, add_element_front_)
 
 }
 
-Test(chaine_list_add, add_element_rank_)
+Test(linked_list_add, add_element_rank_)
 {
     head_node_t head;
     node_t a;
     node_t b;
     node_t c;
 
-    init_chaine_list(&head);
+    init_linked_list(&head);
     init_node(&a);
     init_node(&b);
     init_node(&c);
@@ -206,14 +206,14 @@ Test(chaine_list_add, add_element_rank_)
 
 }
 
-Test(chaine_list_get, get_node_)
+Test(linked_list_get, get_node_)
 {
     head_node_t head;
     node_t a;
     node_t b;
     node_t c;
 
-    init_chaine_list(&head);
+    init_linked_list(&head);
     init_node(&a);
     init_node(&b);
     init_node(&c);
@@ -230,14 +230,14 @@ Test(chaine_list_get, get_node_)
     cr_assert(get_node(&head, -3) == &a, "The result was %p. Expected %p", get_node(&head, -3), &a);
 }
 
-Test(chaine_list_delete, clear_node_)
+Test(linked_list_delete, clear_node_)
 {
     head_node_t *head = malloc(sizeof(head_node_t));
     node_t *a = malloc(sizeof(node_t));
     node_t *b = malloc(sizeof(node_t));
     node_t *c = malloc(sizeof(node_t));
 
-    init_chaine_list(head);
+    init_linked_list(head);
     init_node(a);
     init_node(b);
     init_node(c);
@@ -248,13 +248,13 @@ Test(chaine_list_delete, clear_node_)
     delete_node_rank(head, 0);
     cr_assert(get_node(head, 0) == b, "The result was %p. Expected %p", get_node(head, 0), b);
     cr_assert(get_node(head, 1) == c, "The result was %p. Expected %p", get_node(head, 1), c);
-    clear_chaine(head);
+    clear_link(head);
     cr_assert(head->_head == NULL, "The result was %p. Expected %p", head->_head, NULL);
-    delete_chaine(head);
+    delete_link(head);
 }
 
 
-Test(chaine_list_change, change_node_value)
+Test(linked_list_change, change_node_value)
 {
     head_node_t *head = malloc(sizeof(head_node_t));
     int int_a = 10;
@@ -270,7 +270,7 @@ Test(chaine_list_change, change_node_value)
     node_t *c = create_node_data(&char_c, type_char);
     node_t *d = create_node_data(&pointer_d, type_pointer);
 
-    init_chaine_list(head);
+    init_linked_list(head);
 
     add_element_back(head, a);
     add_element_back(head, b);
@@ -287,7 +287,7 @@ Test(chaine_list_change, change_node_value)
     cr_assert(a->_data._float == float_b, "The result was %f. Expected %f", a->_data._float, float_b);
 }
 
-Test(chaine_list_get, get_node_value)
+Test(linked_list_get, get_node_value)
 {
     head_node_t *head = malloc(sizeof(head_node_t));
     int int_a = 10;
@@ -300,7 +300,7 @@ Test(chaine_list_get, get_node_value)
     node_t *c = create_node_data(&char_c, type_char);
     node_t *d = create_node_data(&pointer_d, type_pointer);
 
-    init_chaine_list(head);
+    init_linked_list(head);
 
     add_element_back(head, a);
     add_element_back(head, b);
@@ -313,7 +313,7 @@ Test(chaine_list_get, get_node_value)
 }
 
 
-Test(chaine_list_cmp, get_node_from_value)
+Test(linked_list_cmp, get_node_from_value)
 {
     head_node_t *head = malloc(sizeof(head_node_t));
     int int_a = 10;
@@ -330,7 +330,7 @@ Test(chaine_list_cmp, get_node_from_value)
     node_t *d = create_node_data(&pointer_d, type_pointer);
     node_t *e = create_node_data(&test_lol, type_array);
     node_t *f = create_node_data(&test_oui, type_array);
-    init_chaine_list(head);
+    init_linked_list(head);
 
 
     add_element_back(head, a);
